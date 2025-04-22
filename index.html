@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Víquez - Portfolio</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            background-color: #1a1a1d;
+            color: #c5c6c7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #66fcf1;
+            font-weight: 600;
+        }
+
+        .lead {
+            color: #a4a5a7;
+        }
+
+        a {
+            color: #45a29e;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #66fcf1;
+        }
+
+        .btn-outline-light {
+            border-color: #66fcf1;
+            color: #66fcf1;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(102, 252, 241, 0.1);
+            color: #66fcf1;
+        }
+
+        .btn-primary-custom {
+            background-color: #66fcf1;
+            border-color: #66fcf1;
+            color: #1a1a1d;
+            font-weight: bold;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #45a29e;
+            border-color: #45a29e;
+            color: #ffffff;
+        }
+
+        .tech-badge {
+            background-color: #45a29e;
+            color: #1a1a1d;
+            font-size: 0.8em;
+        }
+
+        footer {
+            background-color: #0b0c10;
+            color: #a4a5a7;
+            padding: 1.5rem 0;
+            margin-top: 4rem;
+        }
+
+        /* --- Estilos del Prisma --- */
+        .prism-section {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+        }
+
+        .prism-nav label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-color: #45a29e;
+            color: #45a29e;
+        }
+
+        .prism-nav label:hover {
+            background-color: rgba(102, 252, 241, 0.1);
+            border-color: #66fcf1;
+            color: #66fcf1;
+        }
+
+        #face-web-radio:checked~.row .prism-nav label[for="face-web-radio"],
+        #face-mobile-radio:checked~.row .prism-nav label[for="face-mobile-radio"],
+        #face-ai-radio:checked~.row .prism-nav label[for="face-ai-radio"],
+        #face-api-radio:checked~.row .prism-nav label[for="face-api-radio"],
+        #face-desktop-radio:checked~.row .prism-nav label[for="face-desktop-radio"] {
+            background-color: #45a29e;
+            color: #1a1a1d;
+            border-color: #66fcf1;
+            font-weight: bold;
+        }
+
+        .prism-viewport {
+            perspective: 1200px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .prism-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+        }
+
+        .prism {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(69, 162, 158, 0.3);
+            border: 1px solid #66fcf1;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            backface-visibility: hidden;
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+        }
+
+        .face i {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #66fcf1;
+        }
+
+        .face-web {
+            transform: rotateY(0deg) translateZ(138px);
+        }
+
+        .face-mobile {
+            transform: rotateY(72deg) translateZ(138px);
+        }
+
+        .face-ai {
+            transform: rotateY(144deg) translateZ(138px);
+        }
+
+        .face-api {
+            transform: rotateY(216deg) translateZ(138px);
+        }
+
+        .face-desktop {
+            transform: rotateY(288deg) translateZ(138px);
+        }
+
+        #face-web-radio:checked~.row .prism-viewport .prism {
+            transform: rotateY(0deg);
+        }
+
+        #face-mobile-radio:checked~.row .prism-viewport .prism {
+            transform: rotateY(-72deg);
+        }
+
+        #face-ai-radio:checked~.row .prism-viewport .prism {
+            transform: rotateY(-144deg);
+        }
+
+        #face-api-radio:checked~.row .prism-viewport .prism {
+            transform: rotateY(-216deg);
+        }
+
+        #face-desktop-radio:checked~.row .prism-viewport .prism {
+            transform: rotateY(-288deg);
+        }
+
+        .content-area {
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #face-web-radio:checked~.row .content-area .content-web {
+            display: block;
+            opacity: 1;
+        }
+
+        #face-mobile-radio:checked~.row .content-area .content-mobile {
+            display: block;
+            opacity: 1;
+        }
+
+        #face-ai-radio:checked~.row .content-area .content-ai {
+            display: block;
+            opacity: 1;
+        }
+
+        #face-api-radio:checked~.row .content-area .content-api {
+            display: block;
+            opacity: 1;
+        }
+
+        #face-desktop-radio:checked~.row .content-area .content-desktop {
+            display: block;
+            opacity: 1;
+        }
+
+        .content h3 {
+            margin-bottom: 1rem;
+            color: #66fcf1;
+        }
+
+        .content p {
+            color: #c5c6c7;
+        }
+
+        /* --- Estilos Proyectos Destacados --- */
+        #projects {
+            background-color: rgba(11, 12, 16, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-card {
+            background-color: #2a2a2d;
+            border: 1px solid #45a29e;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            color: #c5c6c7;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 252, 241, 0.2);
+            border-color: #66fcf1;
+        }
+
+        .project-card .card-body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card .card-title {
+            color: #66fcf1;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card .card-text {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-card .tech-tags {
+            margin-bottom: 1.25rem;
+        }
+
+        .project-card .tech-badge {
+            margin-right: 4px;
+            margin-bottom: 4px;
+            padding: 0.3em 0.6em;
+        }
+
+        .project-card .btn-outline-light {
+            margin-top: auto;
+            width: fit-content;
+            align-self: flex-start;
+        }
+
+        #no-projects-message {
+            color: #a4a5a7;
+            font-style: italic;
+        }
+
+
+        /* --- Estilos para el Chat IA --- */
+        #ai-chat-section {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        #chatbox {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #45a29e;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #0b0c10;
+        }
+
+        .chat-message {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #45a29e;
+            color: #ffffff;
+            margin-left: auto;
+            border-bottom-right-radius: 3px;
+        }
+
+        .ai-message {
+            background-color: #333;
+            color: #c5c6c7;
+            margin-right: auto;
+            border-bottom-left-radius: 3px;
+        }
+
+        #userInput {
+            background-color: #222;
+            border-color: #45a29e;
+            color: #c5c6c7;
+        }
+
+        #userInput::placeholder {
+            color: #777;
+        }
+
+        #sendButton {
+            background-color: #66fcf1;
+            border-color: #66fcf1;
+            color: #1a1a1d;
+        }
+
+        #sendButton:hover {
+            background-color: #45a29e;
+            border-color: #45a29e;
+            color: #ffffff;
+        }
+
+        #loadingIndicator {
+            color: #66fcf1;
+        }
+
+
+        /* --- Responsividad --- */
+        @media (max-width: 991.98px) {
+            .prism-nav {
+                order: 1;
+                margin-bottom: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .prism-nav label {
+                width: auto;
+                flex-grow: 1;
+                min-width: 120px;
+            }
+
+            .prism-main-content {
+                order: 2;
+            }
+
+            .prism-viewport {
+                height: 220px;
+            }
+
+            .prism-container,
+            .face {
+                width: 180px;
+                height: 180px;
+            }
+
+            .face-web {
+                transform: rotateY(0deg) translateZ(124px);
+            }
+
+            .face-mobile {
+                transform: rotateY(72deg) translateZ(124px);
+            }
+
+            .face-ai {
+                transform: rotateY(144deg) translateZ(124px);
+            }
+
+            .face-api {
+                transform: rotateY(216deg) translateZ(124px);
+            }
+
+            .face-desktop {
+                transform: rotateY(288deg) translateZ(124px);
+            }
+
+            .content-area {
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .prism-viewport {
+                height: 180px;
+            }
+
+            .prism-container,
+            .face {
+                width: 150px;
+                height: 150px;
+            }
+
+            .face-web {
+                transform: rotateY(0deg) translateZ(103px);
+            }
+
+            .face-mobile {
+                transform: rotateY(72deg) translateZ(103px);
+            }
+
+            .face-ai {
+                transform: rotateY(144deg) translateZ(103px);
+            }
+
+            .face-api {
+                transform: rotateY(216deg) translateZ(103px);
+            }
+
+            .face-desktop {
+                transform: rotateY(288deg) translateZ(103px);
+            }
+
+            .face i {
+                font-size: 2em;
+            }
+
+            .face {
+                font-size: 1rem;
+            }
+
+            .hero-buttons .btn {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="container text-center py-5">
+        <h1 class="display-4">Ing. Richard Víquez Pérez</h1>
+        <p class="lead">Desarrollador Fullstack & Arquitecto de Soluciones Digitales</p>
+        <p>Web | Móvil | IA/LLM | APIs | Desktop</p>
+        <div class="mt-4 hero-buttons">
+            <a href="https://firebasestorage.googleapis.com/v0/b/speedtest-d1f44.appspot.com/o/_CV%20.NET%20Actualizado.pdf?alt=media&token=cdfc37c3-b0d3-4d0e-a2fa-f2d066c6028a"
+                download="Richard_Viquez_CV.pdf" target="_blank"
+                class="btn btn-primary-custom btn-lg me-md-3 mb-2 mb-md-0">
+                <i class="fas fa-download me-2"></i>Descargar CV
+            </a>
+            <a href="#contact" class="btn btn-outline-light btn-lg mb-2 mb-md-0">
+                <i class="fas fa-paper-plane me-2"></i>Contactar
+            </a>
+        </div>
+    </header>
+
+    <section class="container prism-section">
+
+        <input type="radio" name="prism-face" id="face-web-radio" class="d-none" checked>
+        <input type="radio" name="prism-face" id="face-mobile-radio" class="d-none">
+        <input type="radio" name="prism-face" id="face-ai-radio" class="d-none">
+        <input type="radio" name="prism-face" id="face-api-radio" class="d-none">
+        <input type="radio" name="prism-face" id="face-desktop-radio" class="d-none">
+
+        <div class="row align-items-start">
+
+            <div class="col-lg-3 prism-nav">
+                <label for="face-web-radio" class="btn w-100 mb-2"><i class="fas fa-laptop-code me-2"></i>Web
+                    Dev</label>
+                <label for="face-mobile-radio" class="btn w-100 mb-2"><i class="fas fa-mobile-alt me-2"></i>Mobile
+                    Apps</label>
+                <label for="face-ai-radio" class="btn w-100 mb-2"><i class="fas fa-brain me-2"></i>AI / LLM</label>
+                <label for="face-api-radio" class="btn w-100 mb-2"><i class="fas fa-cogs me-2"></i>API /
+                    Integrations</label>
+                <label for="face-desktop-radio" class="btn w-100 mb-2"><i class="fas fa-desktop me-2"></i>Desktop
+                    Apps</label>
+            </div>
+
+            <div class="col-lg-9 prism-main-content">
+
+                <div class="prism-viewport">
+                    <div class="prism-container">
+                        <div class="prism">
+
+                            <div class="face face-web">
+                                <i class="fab fa-react"></i> Web Development
+                            </div>
+                            <div class="face face-mobile">
+                                <i class="fab fa-android"></i> Mobile Apps
+                            </div>
+                            <div class="face face-ai">
+                                <i class="fas fa-robot"></i> AI / LLM
+                            </div>
+                            <div class="face face-api">
+                                <i class="fas fa-plug"></i> APIs & Integrations
+                            </div>
+                            <div class="face face-desktop">
+                                <i class="fab fa-windows"></i> Desktop Apps
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="content-area">
+    
+                    <div class="content content-web">
+                        <h3>Desarrollo web moderno</h3>
+                        <p>Experiencia en la creación de aplicaciones web interactivas, responsivas y escalables,
+                            aplicando principios de arquitectura limpia y buenas prácticas como S.O.L.I.D y CI/CD.
+                            Capacidad comprobada para trabajar tanto en el frontend como en el backend, integrando APIs
+                            REST, bases de datos relacionales y no relacionales, y tecnologías en la nube. Enfocado en
+                            brindar interfaces de usuario funcionales y agradables, así como soluciones robustas para
+                            entornos empresariales.</p>
+                        <p><strong>Tecnologías Clave:</strong>
+                            <span class="badge rounded-pill tech-badge me-1">React.js</span>
+                            <span class="badge rounded-pill tech-badge me-1">Blazor Server</span>
+                            <span class="badge rounded-pill tech-badge me-1">ASP.NET Core 5,6,7,8</span>
+                            <span class="badge rounded-pill tech-badge me-1">HTML5</span>
+                            <span class="badge rounded-pill tech-badge me-1">CSS3</span>
+                            <span class="badge rounded-pill tech-badge me-1">Bootstrap</span>
+                            <span class="badge rounded-pill tech-badge me-1">JavaScript</span>
+                            <span class="badge rounded-pill tech-badge me-1">TypeScript</span>
+                            <span class="badge rounded-pill tech-badge me-1">Node.js</span>
+                            <span class="badge rounded-pill tech-badge me-1">Firebase</span>
+                            <span class="badge rounded-pill tech-badge me-1">SQL Server</span>
+                            <span class="badge rounded-pill tech-badge me-1">Azure App Services</span>
+                            <span class="badge rounded-pill tech-badge me-1">Git</span>
+                            <span class="badge rounded-pill tech-badge me-1">Azure DevOps</span>
+                            <span class="badge rounded-pill tech-badge me-1">CI/CD</span>
+                            <span class="badge rounded-pill tech-badge me-1">NGINX</span>
+                            <span class="badge rounded-pill tech-badge me-1">Entity Framework</span>
+                            <span class="badge rounded-pill tech-badge me-1">REST APIs</span>
+
+                        </p>
+                        <a href="#projects" class="btn btn-sm btn-outline-light">Ver Proyectos Web</a>
+                    </div>
+                    <!-- Contenido Móvil -->
+                    <div class="content content-mobile">
+                        <h3>Aplicaciones móviles nativas e híbridas</h3>
+                        <p>Desarrollo de aplicaciones móviles intuitivas, fluidas y con excelente rendimiento,
+                            utilizando tecnologías nativas e híbridas para Android e iOS. Experiencia en todo el ciclo
+                            de vida del desarrollo móvil: diseño, implementación, despliegue y mantenimiento. He
+                            publicado aplicaciones en Google Play y App Store, cumpliendo con sus lineamientos técnicos
+                            y de diseño. Además, cuento con certificación oficial de Google en publicación de apps
+                            móviles.</p>
+                        <p><strong>Tecnologías Clave:</strong>
+                            <span class="badge rounded-pill tech-badge me-1">Jetpack Compose</span>
+                            <span class="badge rounded-pill tech-badge me-1">Kotlin</span>
+                            <span class="badge rounded-pill tech-badge me-1">Swift</span>
+                            <span class="badge rounded-pill tech-badge me-1">SwiftUI</span>
+                            <span class="badge rounded-pill tech-badge me-1">Xcode</span>
+                            <span class="badge rounded-pill tech-badge me-1">Android Studio</span>
+                            <span class="badge rounded-pill tech-badge me-1">Xamarin Forms</span>
+                            <span class="badge rounded-pill tech-badge me-1">.NET MAUI</span>
+                            <span class="badge rounded-pill tech-badge me-1">Firebase</span>
+                            <span class="badge rounded-pill tech-badge me-1">CI/CD con Azure DevOps</span>
+                            <span class="badge rounded-pill tech-badge me-1">API REST</span>
+                            <span class="badge rounded-pill tech-badge me-1">Notificaciones Push</span>
+                            <span class="badge rounded-pill tech-badge me-1">Firebase Auth</span>
+                            <span class="badge rounded-pill tech-badge me-1">Google Play Console</span>
+                            <span class="badge rounded-pill tech-badge me-1">App Store Connect</span>
+                            <span class="badge rounded-pill tech-badge me-1">Certificación Google Play</span>
+
+                        </p>
+                        <a href="#projects" class="btn btn-sm btn-outline-light">Ver Proyectos Móviles</a>
+                    </div>
+                    <!-- Contenido IA / LLM -->
+                    <div class="content content-ai">
+                        <h3>Integración de inteligencia artificial y llms</h3>
+                        <p>Implementación de modelos de lenguaje grandes (LLMs) y soluciones de inteligencia artificial
+                            para potenciar aplicaciones con procesamiento de lenguaje natural, análisis predictivo y
+                            automatización inteligente. Experiencia en la instalación, configuración y fine-tuning de
+                            modelos open source, incluyendo LLaMA 3 y otros modelos, para adaptarlos a necesidades
+                            específicas. Además, utilizo LangChain para integrar estos modelos con bases de datos,
+                            documentos y otros recursos de manera privada y segura, garantizando que todo el proceso se
+                            realice de forma controlada y conforme a las mejores prácticas de seguridad.</p>
+                        <p><strong>Tecnologías/APIs Clave:</strong>
+                            <span class="badge rounded-pill tech-badge me-1">LLaMA 3</span>
+                            <span class="badge rounded-pill tech-badge me-1">DeepSeek R1</span>
+                            <span class="badge rounded-pill tech-badge me-1">OpenAI API</span>
+                            <span class="badge rounded-pill tech-badge me-1">LangChain</span>
+                            <span class="badge rounded-pill tech-badge me-1">Hugging Face</span>
+                            <span class="badge rounded-pill tech-badge me-1">Transformers</span>
+                            <span class="badge rounded-pill tech-badge me-1">TensorFlow</span>
+                            <span class="badge rounded-pill tech-badge me-1">PyTorch</span>
+                            <span class="badge rounded-pill tech-badge me-1">NLP</span>
+                            <span class="badge rounded-pill tech-badge me-1">CUDA</span>
+                            <span class="badge rounded-pill tech-badge me-1">Paneles de KPIs</span>
+                            <span class="badge rounded-pill tech-badge me-1">QLoRA</span>
+                            <span class="badge rounded-pill tech-badge me-1">Ollama</span>
+
+                        </p>
+                        <a href="#projects" class="btn btn-sm btn-outline-light">Ver Proyectos IA</a>
+                    </div>
+                    <!-- Contenido API / Integraciones -->
+                    <div class="content content-api">
+                        <h3>Diseño e integración de apis restful</h3>
+                        <p>Especializado en la creación de APIs RESTful que son seguras, escalables y bien documentadas,
+                            cumpliendo con los estándares de la industria y utilizando las mejores prácticas de
+                            desarrollo. Experiencia en la implementación de arquitecturas que permiten una fácil
+                            integración con sistemas existentes, asegurando una comunicación eficiente entre servicios y
+                            aplicaciones. Mi enfoque se centra en optimizar el rendimiento y garantizar la fiabilidad de
+                            las APIs mediante pruebas automatizadas.</p>
+                        <p><strong>Conceptos/Tecnologías Clave:</strong>
+                            <span class="badge rounded-pill tech-badge me-1">REST Principles</span>
+                            <span class="badge rounded-pill tech-badge me-1">JSON</span>
+                            <span class="badge rounded-pill tech-badge me-1">OAuth2</span>
+                            <span class="badge rounded-pill tech-badge me-1">JWT (JSON Web Tokens)</span>
+                            <span class="badge rounded-pill tech-badge me-1">API Gateway</span>
+                            <span class="badge rounded-pill tech-badge me-1">Swagger/OpenAPI</span>
+                            <span class="badge rounded-pill tech-badge me-1">GraphQL</span>
+                            <span class="badge rounded-pill tech-badge me-1">Rate Limiting</span>
+                            <span class="badge rounded-pill tech-badge me-1">CORS</span>
+                            <span class="badge rounded-pill tech-badge me-1">API Documentation</span>
+                            <span class="badge rounded-pill tech-badge me-1">Postman</span>
+                            <span class="badge rounded-pill tech-badge me-1">CI/CD</span>
+                            <span class="badge rounded-pill tech-badge me-1">RESTful Services</span>
+                        </p>
+                        <a href="#projects" class="btn btn-sm btn-outline-light">Ver Ejemplos de Integración</a>
+                    </div>
+                    <!-- Contenido Desktop -->
+                    <div class="content content-desktop">
+                        <h3>Aplicaciones de escritorio multiplataforma</h3>
+                        <p>Desarrollo de aplicaciones de escritorio robustas y funcionales, diseñadas para ofrecer una
+                            experiencia de usuario fluida en diferentes sistemas operativos. Utilizando tecnologías
+                            modernas para crear aplicaciones que se ejecutan de manera nativa en Windows, macOS y Linux,
+                            garantizando una implementación eficiente y mantenible en todas las plataformas.</p>
+                        <p><strong>Tecnologías Clave:</strong>
+                            <span class="badge rounded-pill tech-badge me-1">Electron</span>
+                            <span class="badge rounded-pill tech-badge me-1">Windows Forms</span>
+                            <span class="badge rounded-pill tech-badge me-1">C#</span>
+                            <span class="badge rounded-pill tech-badge me-1">WPF</span>
+                            <span class="badge rounded-pill tech-badge me-1">.NET MAUI</span>
+                            <span class="badge rounded-pill tech-badge me-1">Nuget</span>
+                            <span class="badge rounded-pill tech-badge me-1">SQLite</span>
+                            <span class="badge rounded-pill tech-badge me-1">Redis</span>
+                            <span class="badge rounded-pill tech-badge me-1">Cross-platform Development</span>
+                            <span class="badge rounded-pill tech-badge me-1">App Packaging</span>
+
+                        </p>
+                        <a href="#projects" class="btn btn-sm btn-outline-light">Ver Proyectos Desktop</a>
+                    </div>
+                </div> 
+
+            </div> 
+        </div> 
+    </section> 
+
+
+    <section id="about" class="container py-5">
+        <h2>Sobre Mí</h2>
+        <p>Soy desarrollador de software con más de 7 años de experiencia en el diseño y desarrollo de aplicaciones
+            empresariales. A lo largo de mi carrera he trabajado en sectores como el financiero, gastronómico y retail,
+            aplicando buenas prácticas de programación como los principios SOLID y metodologías ágiles.
+
+            Tengo un dominio sólido de lenguajes como C#, JavaScript y Python, así como experiencia con herramientas y
+            frameworks modernos como .NET (5, 6, 7, 8), Entity Framework, Docker, Firebase, Jetpack Compose, SwiftUI, y
+            Blazor Server. He participado en el despliegue de APIs, soluciones móviles y proyectos en la nube utilizando
+            Azure y AWS. Además, cuento con experiencia en el despliegue de modelos LLM como LLaMA 3,DeepSeek
+            R1,Mixtral, análisis de datos con herramientas de NLP como TensorFlow y Hugging Face, y visualización de
+            KPIs.
+
+            Me caracterizo por ser autodidacta, proactivo y con buena capacidad para el trabajo en equipo. Actualmente
+            resido en Heredia, Costa Rica y estoy en constante actualización profesional a través de certificaciones en
+            tecnologías de Microsoft y Google.</p>
+    </section>
+
+    <!-- Sección "Proyectos Destacados" (Contenido dinámico) -->
+    <section id="projects" class="container py-5">
+        <h2 class="text-center mb-4">Proyectos Destacados</h2>
+        <div class="row g-4" id="project-cards-row">
+        </div>
+    </section>
+
+    <!-- Chat con IA -->
+    <section id="ai-chat-section" class="container">
+        <h2 class="text-center mb-4">¿Tienes preguntas? Pregúntale a mi Asistente IA</h2>
+        <div class="card" style="background-color: #1f1f23;">
+            <div class="card-body">
+                <div id="chatbox" class="mb-3">
+                    <div class="chat-message ai-message">¡Hola! Soy un asistente IA. Pregúntame sobre las habilidades,
+                        experiencia o cómo contactar a Richard Víquez Pérez.</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="userInput" class="form-control" placeholder="Escribe tu pregunta aquí...">
+                    <button id="sendButton" class="btn btn-primary-custom">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+                <div id="loadingIndicator" class="text-center mt-2 d-none">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <span> Pensando...</span>
+                </div>
+            </div>
+        </div>
+        <p class="text-center small mt-3 text-muted">
+            <i class="fas fa-info-circle me-1"></i> Este asistente usa IA generativa (Google Gemini). Las respuestas se
+            basan en información predefinida.
+        </p>
+    </section>
+
+    <!-- Sección "Contacto" -->
+    <section id="contact" class="container py-5">
+        <h2 class="text-center mb-4">Contacto</h2>
+        <div class="text-center">
+            <a href="https://es.stackoverflow.com/users/101348/richard-v%C3%ADquez-P%C3%A9rez?tab=profile"
+                target="_blank" class="btn btn-lg btn-outline-light me-3 mb-2 mb-lg-0">
+                <i class="fab fa-stack-overflow me-2"></i>StackOverflow
+            </a>
+            <a href="https://www.linkedin.com/in/richardviquez" target="_blank"
+                class="btn btn-lg btn-outline-light me-3 mb-2 mb-lg-0"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
+            <a href="https://github.com/rviquezsoft" target="_blank"
+                class="btn btn-lg btn-outline-light mb-2 mb-lg-0"><i class="fab fa-github me-2"></i>GitHub</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <p id="leyenda">© 2024 Richard Víquez Pérez. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script type="module">
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentYear = new Date().getFullYear();
+            const leyend = document.getElementById('leyenda');
+            if (leyend) {
+                leyend.innerText = `© ${currentYear} Richard Víquez Pérez. Todos los derechos reservados.`;
+            }
+        });
+
+
+        const allProjects = [
+            {
+                title: "Sistema de gestión de fotos para la empresa Wilderness",
+                description: "Sistema para recopilar datos de turistas que visitan el país, gestionar fotos, experiencias, reportes, entre otros",
+                category: "web",
+                technologies: ["Blazor Server", "CSS3", "Bootstrap 5", "JavaScript", "HTML", "C#", "Typescript", "MYSQL"],
+                link: "http://154.53.60.128:8081"
+            },
+            {
+                title: "Plataforma e-commerce: Costa Panamá",
+                description: "Desarrollo fullstack de una tienda online con catálogo de productos, carrito de compras, integración de pagos y panel de administración.",
+                category: "web",
+                technologies: ["Javascript", "Node.js", "Express", "Firebase", "Place to Pay", "NOSQL", "Firestore"],
+                link: "https://ecommercecr-be2a5.firebaseapp.com/login/index.html"
+            },
+            {
+                title: "Softland CRM móvil",
+                description: "Aplicación nativa Android para  integrar el CRM con el app móvil.",
+                category: "mobile",
+                technologies: ["Kotlin", "Jetpack Compose", "Firebase (Auth, Firestore, FCM)", "Retrofit", "Google Play Console"],
+                link: "https://play.google.com/store/apps/details?id=com.tritiumsoftware.forcemanager.softland&pcampaignid=web_share"
+            },
+            {
+                title: "Softland ERP móvil",
+                description: "Aplicación nativa iOS para replicar los módulos del ERP en su versión móvil.",
+                category: "mobile",
+                technologies: ["Swift", "SwiftUI", "Core Data", "Local Authentication", "App Store Connect"],
+                link: "https://apps.apple.com/cr/app/softland-mobile/id1558925815?platform=iphone"
+            },
+            {
+                title: "Asistente de portafolio con IA propia",
+                description: "Implementación de un modelo LLM (LLaMA 3) localmente para asistir en la información requerida en este portafolio.",
+                category: "ai",
+                technologies: ["Python", "LangChain", "LLaMA 3", "Ollama", "Hugging Face Transformers", "FastAPI"],
+                link: "#contact"
+            },
+            {
+                title: "API o microservicio para envío de correos",
+                description: "Diseño e implementación de una API RESTful para el envío de correos.",
+                category: "api",
+                technologies: [".NET 8", "C#", "Entity Framework Core", "MariaDB", "Docker", "Ubuntu", "Api Key", "Swagger"],
+                link: "http://45.137.194.61:8080"
+            },
+            {
+                title: "Nuget FastMapperReal",
+                description: "Paquete Nuget para copiar los valores de propiedades con nombres iguales de un objeto a otro.",
+                category: "desktop",
+                technologies: ["C#", "Reflection", "Nuget.org", "FastMember", "Linq"],
+                link: "https://github.com/rviquezsoft/FastMapperReal"
+            }
+
+        ];
+
+        const projectCardsRow = document.getElementById('project-cards-row');
+        const prismRadios = document.querySelectorAll('input[name="prism-face"]');
+
+        function renderProjects(category) {
+            if (!projectCardsRow) return;
+
+            const filteredProjects = allProjects.filter(p => p.category === category);
+            projectCardsRow.innerHTML = '';
+
+            if (filteredProjects.length === 0) {
+                projectCardsRow.innerHTML = `<p id="no-projects-message" class="text-center col-12">No hay proyectos destacados en la categoría '${getCategoryDisplayName(category)}' por el momento.</p>`;
+                return;
+            }
+
+            filteredProjects.forEach(project => {
+                const techBadges = project.technologies
+                    ? project.technologies.map(tech => `<span class="badge rounded-pill tech-badge me-1 mb-1">${tech}</span>`).join('')
+                    : '';
+
+                const cardHTML = `
+                    <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+                        <div class="card project-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${project.title}</h5>
+                                <p class="card-text">${project.description}</p>
+                                <div class="tech-tags">
+                                    ${techBadges}
+                                </div>
+                                ${project.link ? `<a href="${project.link}" ${project.link !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn btn-sm btn-outline-light"><i class="fas fa-link me-1"></i> Ver Detalles</a>` : ''}
+                            </div>
+                        </div>
+                    </div>`;
+                projectCardsRow.innerHTML += cardHTML;
+            });
+        }
+
+        function getCategoryFromRadioId(radioId) {
+            return radioId.replace('face-', '').replace('-radio', '');
+        }
+
+        function getCategoryDisplayName(categoryKey) {
+            const names = {
+                web: "Desarrollo Web",
+                mobile: "Aplicaciones Móviles",
+                ai: "IA / LLM",
+                api: "API / Integraciones",
+                desktop: "Aplicaciones de Escritorio"
+            };
+            return names[categoryKey] || categoryKey;
+        }
+
+
+
+        prismRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const selectedCategory = getCategoryFromRadioId(radio.id);
+                    renderProjects(selectedCategory);
+                }
+            });
+        });
+
+
+        const initiallyChecked = document.querySelector('input[name="prism-face"]:checked');
+        if (initiallyChecked) {
+            const initialCategory = getCategoryFromRadioId(initiallyChecked.id);
+            renderProjects(initialCategory);
+        }
+
+
+        //NOTA: Se que poner esto aquí no se debe hacer pero es un servicio gratuito y la verdad no me importa si usan esta api key, no me afecta.
+        const API_KEY = "AIzaSyBWkakvoekMT8G9144oqSHorO-X5-4Ysps";
+
+
+        const developerInfo = `
+        Nombre: Richard Víquez Pérez
+        Perfil: Desarrollador Fullstack con experiencia en desarrollo Web (C#, Typescript, Javascript,HTML,CSS3), aplicaciones Móviles (Jetpack Compose, SwiftUI), integración de IA/LLM (LangChain,Python,Pytorch), diseño e integración de APIs RESTful, y aplicaciones de Escritorio (Windows Forms).
+        Habilidades Clave: JavaScript, TypeScript, Python, React, Node.js, Express, Flask, Xamarin Forms, Jetpack Compose, Swift, Kotlin, SQL, NoSQL, Docker, Git, APIs REST, Odata, HTML5, CSS3, Bootstrap, LLMs, Windows Forms.
+        Experiencia Resumida: Más de 5 años desarrollando aplicaciones web y móviles, con conocimiento en la integración de tecnologías emergentes como IA y LLMs, trabajando tanto en proyectos individuales como colaborativos.
+        Enfoque: Apasionado por la tecnología, el aprendizaje continuo y la creación de productos de software de alta calidad que resuelvan problemas reales de usuarios.
+        Disponibilidad: Disponible para proyectos freelance, colaboraciones o empleo a tiempo completo.
+        `;
+                const contactInfo = `
+        Cómo contactar:
+        - Email: rviquezsoft@gmail.com
+        - LinkedIn: https://www.linkedin.com/in/richardviquez
+        - GitHub: https://github.com/rviquezsoft
+        - StackOverflow: https://es.stackoverflow.com/users/101348/richard-v%C3%ADquez-P%C3%A9rez?tab=profile
+        `;
+
+
+        import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        let genAI;
+        let model;
+
+        if (API_KEY && API_KEY !== "TU_API_KEY_DE_GOOGLE_AQUI") {
+            try {
+                genAI = new GoogleGenerativeAI(API_KEY);
+                model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+                console.log("Google AI SDK inicializado.");
+            } catch (error) {
+                console.error("Error inicializando Google AI SDK:", error);
+                displayMessage("Error al inicializar el asistente IA.", 'ai-message', true);
+                userInput.disabled = true; sendButton.disabled = true; userInput.placeholder = "Asistente IA no disponible";
+            }
+        } else {
+            console.warn("API Key de Google AI no configurada.");
+            displayMessage("El asistente IA no está configurado.", 'ai-message', true);
+            userInput.disabled = true; sendButton.disabled = true; userInput.placeholder = "Asistente IA no disponible";
+        }
+
+        const generationConfig = { temperature: 0.7, topK: 1, topP: 1, maxOutputTokens: 256 };
+        const safetySettings = [
+            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+        ];
+
+
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (event) => { if (event.key === 'Enter') sendMessage(); });
+
+
+        function displayMessage(message, type, isError = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', type);
+            const safeMessage = message.replace(/</g, "<").replace(/>/g, ">");
+            // Permitir saltos de línea básicos generados por la IA
+            messageElement.innerHTML = safeMessage.replace(/\n/g, '<br>');
+            if (isError) {
+                messageElement.style.color = '#ff6b6b';
+                messageElement.style.border = '1px solid #ff6b6b';
+                messageElement.style.backgroundColor = 'rgba(255, 107, 107, 0.1)';
+            }
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Función para enviar mensaje y obtener respuesta de la IA
+        async function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (!userMessage || !model || sendButton.disabled) return;
+
+            displayMessage(userMessage, 'user-message');
+            userInput.value = '';
+            loadingIndicator.classList.remove('d-none');
+            sendButton.disabled = true;
+            userInput.disabled = true;
+
+            const prompt = `
+            **Rol:** Eres un asistente virtual amigable y profesional para Richard Víquez Pérez, un desarrollador fullstack. Tu propósito es responder preguntas sobre él basándote *estrictamente* en la información proporcionada a continuación.
+
+            **Instrucciones:**
+            1.  Responde únicamente usando la información dada. NO inventes detalles.
+            2.  Si la pregunta es sobre algo no cubierto en la información, indica amablemente que no tienes ese detalle específico, pero puedes hablar sobre sus habilidades generales o cómo contactarlo.
+            3.  Sé conciso y profesional. Usa párrafos cortos y listas si es apropiado.
+            4.  No respondas preguntas fuera de tópico o inapropiadas. Redirige amablemente hacia preguntas sobre Richard Víquez Pérez.
+            5.  Menciona siempre la forma de contacto si la pregunta lo sugiere o si no tienes la información exacta.
+
+            **Información sobre Richard Víquez Pérez:**
+            ${developerInfo}
+
+            **Información de Contacto:**
+            ${contactInfo}
+
+            **Pregunta del Usuario:**
+            ${userMessage}
+
+            **Tu Respuesta:**
+            `;
+
+            try {
+                const chat = model.startChat({
+                    generationConfig,
+                    safetySettings,
+                    history: [],
+                });
+                const result = await chat.sendMessage(prompt);
+                const response = await result.response;
+                const aiMessage = response.text();
+
+                displayMessage(aiMessage, 'ai-message');
+
+            } catch (error) {
+                console.error("Error al llamar a la API de Gemini:", error);
+                let errorMessage = "Lo siento, ocurrió un error al procesar tu pregunta.";
+                if (error.message && error.message.includes("API key not valid")) {
+                    errorMessage = "Error: La API Key configurada no es válida o está mal escrita. Por favor, contacta al administrador del sitio.";
+                } else if (error.message && error.message.includes("quota")) {
+                    errorMessage = "Se ha alcanzado temporalmente el límite de uso del asistente IA. Por favor, inténtalo más tarde.";
+                } else if (error.response && error.response.promptFeedback && error.response.promptFeedback.blockReason) {
+                    errorMessage = "La pregunta no pudo ser procesada debido a las políticas de seguridad. Por favor, reformula tu pregunta.";
+                    console.log("Bloqueo por seguridad:", error.response.promptFeedback.blockReason)
+                }
+                displayMessage(errorMessage, 'ai-message', true);
+            } finally {
+                loadingIndicator.classList.add('d-none');
+                if (model) {
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                }
+            }
+        }
+
+    </script>
+
+
+
+
+</body>
+
+</html>
