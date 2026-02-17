@@ -924,7 +924,7 @@
 
 
         //NOTA: Se que poner esto aquí no se debe hacer pero es un servicio gratuito y la verdad no me importa si usan esta api key, no me afecta.
-        const API_KEY = "AIzaSyDadtf6xGCXzgZ9O3gWBWEgr36Rnu2QiQQ";
+        const API_KEY = "AIzaSyDBOgRP6O2uceBe7QLGTNwlQHpxdQSebmo";
 
 
         const developerInfo = `
@@ -954,7 +954,7 @@
         let genAI;
         let model;
 
-        if (API_KEY && API_KEY !== "AIzaSyDadtf6xGCXzgZ9O3gWBWEgr36Rnu2QiQQ") {
+        if (API_KEY && API_KEY !== "AIzaSyDBOgRP6O2uceBe7QLGTNwlQHpxdQSebmo") {
             try {
                 genAI = new GoogleGenerativeAI(API_KEY);
                 model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
